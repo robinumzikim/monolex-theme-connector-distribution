@@ -4,7 +4,9 @@ This repository contains public installation instructions, privacy information a
 
 ## Chrome extension
 
-**Monolex Theme Connector** is being prepared for the Chrome Web Store by publisher **monotologist**. Its store ID is `dpbkehcknngnainngakliekelaanccbc`. A draft ID is not a published installation link; publication status will be recorded here after review submission.
+**Monolex Theme Connector v0.4.1** was submitted to the Chrome Web Store on **2026-11-13** by publisher **monotologist**. The developer dashboard confirms **Pending review**. It is configured for free, public availability in all regions and automatic publication after approval. It is not yet available for installation.
+
+[Chrome Web Store listing (available after approval)](https://chromewebstore.google.com/detail/dpbkehcknngnainngakliekelaanccbc) - Store ID: `dpbkehcknngnainngakliekelaanccbc`.
 
 The extension detects the `data-theme` marker on the current `app.monolex.ai` page. Where a matching standalone Chrome theme has been verified as published, it can open that theme's Web Store page for manual installation.
 
