@@ -1,43 +1,32 @@
 # Monolex Theme Connector
 
-This repository contains public installation instructions, privacy information and reviewed Mac companion downloads. It does not contain account data or browser profiles.
+The v0.6.0 update is being prepared for review. It replaces the old local-companion workflow with an extension-only workflow on **Chrome157+**. The currently published v0.4.1 still uses the old workflow until Google approves the update.
 
-## Chrome extension
+[Chrome Web Store](https://chromewebstore.google.com/detail/dpbkehcknngnainngakliekelaanccbc) · Publisher **monotologist** · Same extension ID; no reinstall or new listing is planned.
 
-**Monolex Theme Connector v0.4.1** was submitted to the Chrome Web Store on **2026-11-13** by publisher **monotologist**. The developer dashboard confirms **Pending review**. It is configured for free, public availability in all regions and automatic publication after approval. It is not yet available for installation.
+## First use of a theme
 
-[Chrome Web Store listing (available after approval)](https://chromewebstore.google.com/detail/dpbkehcknngnainngakliekelaanccbc) - Store ID: `dpbkehcknngnainngakliekelaanccbc`.
+1. Install or update Theme Connector. Accept Chrome's theme-management permission request if prompted, and refresh app.monolex.ai once.
+2. Log in to Monolex normally and choose a theme.
+3. If that Chrome theme is missing, select **이 테마 처음 설치** in the site prompt or extension popup and confirm installation in its Chrome Web Store page. Only themes you actually use need installation.
+4. During installation preparation, Chrome can briefly show default colors. Closing the store tab or selecting **설치 취소 · 이전 테마로** restores the previous theme.
 
-The extension detects the `data-theme` marker on the current `app.monolex.ai` page. Where a matching standalone Chrome theme has been verified as published, it can open that theme's Web Store page for manual installation.
+## After installation
 
-## Optional Mac automatic theme connection — beta
+The connector follows the displayed preset in the focused app.monolex.ai tab, including previews, and automatically switches between installed themes. No local app, terminal program or per-change installation confirmation is required. The popup offers pause/resume and shows how many of the38 themes are installed.
 
-[Download the Mac companion beta](https://github.com/robinumzikim/monolex-theme-connector-distribution/releases/download/v0.4.0-beta.1/monolex-theme-sync-mac-arm64.zip)
+Themes and settings belong to each Chrome profile. Installing the extension in another profile does not install its themes there. If a theme is removed, the next use needs installation again. Managed Chrome policies may prevent changes. Chrome's native toolbar/content divider is not controlled.
 
-Requires Apple Silicon (M1 or later), macOS 14+, and installed Google Chrome. The app includes its Node runtime; no separate Node installation is required. **This beta is ad hoc signed and has not been Apple-notarized. macOS may prevent downloaded copies from opening.** Developer ID signing and notarization remain pending. This beta is intended for evaluated test use; it is not a notarized general-availability Mac installer.
+The update uses `management` only for theme inventory, enable/disable transitions and installation events, and `storage` only for local settings and installation recovery. The content script is restricted to `https://app.monolex.ai/*`. It reads theme markers and focus/visibility, not page text, passwords, cookies or messages. No observations or installation inventory are sent to a developer server.
 
-1. Extract the ZIP and move **Monolex Theme Sync.app** to Applications.
-2. Open the Mac app once. It registers a user-level native messaging connector restricted to this exact Chrome extension and opens its own dedicated Chrome.
-3. Log in to Monolex in that dedicated Chrome and change its theme in settings. The local app reads the displayed theme marker and five color roles and updates the dedicated Chrome theme.
-4. The separately installed Web Store extension can show the local app status, open its dedicated Chrome, pause/resume automatic changes, and reopen its connection window.
-5. Quit by closing all dedicated Chrome windows or quitting the Mac app. Reopening preserves its dedicated profile and theme identity.
+## Release validation
 
-**Automatic theme changes affect the companion's dedicated Chrome profile. Ordinary Chrome windows retain their theme.** Installing the Web Store extension alone does not recolor ordinary Chrome automatically. The companion uses Chrome's development theme-loading capability, so Chrome updates may require compatibility verification.
+The v0.6.0 candidate passed50 unit/regression checks. In isolated Chrome157 profiles, all38 public theme IDs were exercised from official Google theme package bytes loaded as development fixtures, followed by76 automatic forward/reverse transitions with all themes retained. First-use/cancel/install-event, pause/resume and focus boundaries were checked. This does not claim an observed end-to-end native Web Store installation UI or normal store-installed restart test.
 
-No paid companion subscription is required by this package. Access to the Monolex service uses your own Monolex account and its applicable service plan.
+## Earlier versions
 
-## Storage, updates and removal
+The older v0.4.1 store extension and optional ad hoc-signed Mac companion are documented in [the legacy guide](LEGACY-MAC.md). The Mac beta is no longer required by the v0.6.0 design. Its historical release files remain available for existing test users.
 
-The app keeps its dedicated profile, generated theme and local status/log files in `~/Library/Application Support/Monolex Theme Sync/`. Replacing or moving the app keeps this data. The download does not contain anyone's login session.
+[Privacy policy](PRIVACY.md) · [Support](https://github.com/robinumzikim/monolex-theme-connector-distribution/issues)
 
-The native messaging registration is one file:
-`~/Library/Application Support/Google/Chrome/NativeMessagingHosts/ai.monolex.theme_sync.json`.
-It permits only `chrome-extension://dpbkehcknngnainngakliekelaanccbc/` and accepts status/start/reopen/pause/resume requests. It does not provide a general shell or file-access API.
-
-To uninstall, quit and move the Mac app to Trash, remove the Chrome extension, and optionally move the dedicated data folder and this one registration file to Trash. Other Chrome profiles and native messaging registrations are separate.
-
-## Privacy and support
-
-[Privacy policy](PRIVACY.md) · [Report a problem](https://github.com/robinumzikim/monolex-theme-connector-distribution/issues)
-
-Do not include passwords, browser profiles, cookies or local connection tokens in issue reports.
+Do not include passwords, cookies, browser profiles or private account data in public issues.

@@ -1,31 +1,29 @@
 # Privacy policy — Monolex Theme Connector
 
-Effective date: 2026-11-13
+Effective date:2026-11-16. This policy covers the v0.6.0 update; the earlier v0.4.1 policy is [preserved here](PRIVACY-v0.4.1.md).
 
-Monolex Theme Connector helps match the theme displayed by Monolex with Chrome themes and an optional local Mac companion.
+## Single purpose
 
-## Data handled locally
+Match the Chrome theme to the preset displayed in the focused app.monolex.ai tab, after each desired theme is installed once with user confirmation. No local companion is required by v0.6.0.
 
-The Web Store extension reads only the current Monolex page's `data-theme` and `data-theme-mode` HTML attributes to identify the displayed preset. It operates only on `https://app.monolex.ai/*`. It does not read page body text, passwords, form values, messages, cookies or the account's storage. Marker changes may include a theme preview before it is saved.
+## Data used locally
 
-With the optional Mac companion installed, the extension exchanges local status and the explicit commands status/start/reopen/pause/resume through Chrome Native Messaging. The native host is restricted to this exact extension ID. It authenticates its own local controller before forwarding controls. It does not provide arbitrary command execution or general file access.
+On `https://app.monolex.ai/*`, the content script reads only root `data-theme`/`data-theme-mode` attributes plus whether the document is focused and visible. It displays an in-page first-use installation prompt. It does not read page body text, forms, passwords, messages, cookies or account storage. Displayed theme observations may include unsaved previews.
 
-In the dedicated Chrome profile, the Mac app's bundled extension additionally reads five computed theme color roles: primary/secondary/tertiary background and primary/secondary text. It sends those marker/color values over the app-owned local debugging pipe so the local app can generate and verify the matching Chrome theme.
+Chrome's management API returns installed-item information. The worker immediately filters this to themes for inventory, enable/disable operations and installation events. It does not manage unrelated extensions. Popup installation counts use only the38 known Monolex theme IDs. The inventory is not sent to a server.
 
-## Storage and transmission
+## Local storage and controls
 
-Theme observations used by the Web Store popup are kept in memory. The optional local app saves its generated theme, stable theme identity, connection metadata, timestamps and operational logs locally under `~/Library/Application Support/Monolex Theme Sync/`.
+`chrome.storage.local` stores the automatic-sync setting, last selected theme ID, sync state and a small in-progress installation recovery record: theme IDs, source/store tab IDs and an operational timestamp. This is per-profile operational state, not browsing history or analytics. No page URLs or account credentials are stored in that record.
 
-Its dedicated Chrome stores login/session information normally within that separate browser profile. The connector does not inspect those account databases. Browser profiles, authentication tokens and login sessions are not included in distributed packages.
+Missing themes are installed through the official Chrome Web Store after the user's explicit action. Preparing an installation temporarily disables the outgoing theme to preserve it. Installation completion is detected locally; cancellation attempts to restore the prior theme. Automatic changes can be paused or resumed. Removing a theme or the connector is controlled by Chrome. Uninstalling the connector removes its local extension storage; Chrome manages any separately installed themes.
 
-The extension and companion do not send theme observations or local status to a developer server. They include no analytics, advertising, tracking SDK, sale of data or remote executable code. Local data is used only for the requested theme detection and connection function and is not used for credit or lending decisions.
+## Transmission and third parties
 
-External links open only when selected by the user. The Monolex service, Chrome Web Store and GitHub download/support pages handle their own account and web requests under their respective privacy policies. Information you choose to post in a public GitHub issue is public; please omit personal or authentication data.
+No theme observations, installed-theme inventory or local settings are sent to a developer server. The package includes no analytics, advertising, tracking SDK, nativeMessaging, debugger or remote executable code. Data is not sold or transferred for unrelated uses, creditworthiness or lending.
 
-## User controls and deletion
+Chrome Web Store and Monolex handle their own accounts and web requests under their privacy policies. Store/support/privacy links are opened only after user action. Information voluntarily posted in public GitHub issues is public; omit authentication or personal data.
 
-The extension popup offers explicit local connection controls. Automatic changes can be paused/resumed, and the local app can be quit. Uninstall the extension through Chrome. To remove the optional local app and its retained data, follow the removal instructions in the setup guide, including its one native messaging registration file.
+## Contact
 
-## Changes and contact
-
-Changes to these data practices will be disclosed in the extension's release information and updated here. For questions, use [this project's issue tracker](https://github.com/robinumzikim/monolex-theme-connector-distribution/issues) without posting private account information.
+Use [the support tracker](https://github.com/robinumzikim/monolex-theme-connector-distribution/issues).
