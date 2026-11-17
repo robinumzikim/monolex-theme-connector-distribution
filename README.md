@@ -1,6 +1,6 @@
 # Monolex Theme Connector
 
-The **v0.7.0 update is being prepared for review**. The currently public store version is **v0.6.0**, published on November 17, 2026. v0.7.0 improves existing-session connection and first-theme installation guidance on **Chrome 157+**.
+The **v0.7.0 update is implemented and validated; review submission has not yet been confirmed**. The currently public store version is **v0.6.0**, published on November 17, 2026. v0.7.0 improves existing-session connection and first-theme installation guidance on **Chrome 157+**.
 
 [Chrome Web Store](https://chromewebstore.google.com/detail/dpbkehcknngnainngakliekelaanccbc) · Publisher **monotologist** · The same extension ID is retained.
 
@@ -28,6 +28,8 @@ Installed themes switch automatically with the displayed preset in the focused M
 Permissions are `management`, `storage`, `scripting` and exact app host access. Account labels, passwords, cookies, tokens, page text and account storage are not read. No observations or inventory are sent to a developer server. See [the privacy policy](PRIVACY.md).
 
 The v0.7.0 candidate passed 57 unit/regression checks, actual Chrome 157 app-open-before-install connection tests, ready/login/loading distinction, workspace reuse, one-time store handoff, cancellation recovery, worker wake and focus restrictions. All 38 public IDs passed 76 automatic transitions with all themes retained, using official Google CRX bytes loaded as development fixtures. Real user authentication was not accessed. Native Web Store install completion and normal store-installed full-browser restart retention are not claimed as observed tests.
+
+Prepared ZIP SHA-256: `e9d7829873ec5527de1e08b9e6a3dec00bc6918fd4c42d0e9804faff714bd4fa`.
 
 ## Earlier versions
 
