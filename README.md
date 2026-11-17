@@ -1,34 +1,36 @@
 # Monolex Theme Connector
 
-The v0.6.0 update was submitted for review on **2026-11-16** through the existing publisher account and is **Pending review**, with automatic publication after approval. It replaces the old local-companion workflow with an extension-only workflow on **Chrome 157+**. The currently published v0.4.1 still uses the old workflow until Google approves the update.
+The **v0.7.0 update is being prepared for review**. The currently public store version is **v0.6.0**, published on November 17, 2026. v0.7.0 improves existing-session connection and first-theme installation guidance on **Chrome 157+**.
 
-[Chrome Web Store](https://chromewebstore.google.com/detail/dpbkehcknngnainngakliekelaanccbc) · Publisher **monotologist** · Same extension ID; no reinstall or new listing is planned.
+[Chrome Web Store](https://chromewebstore.google.com/detail/dpbkehcknngnainngakliekelaanccbc) · Publisher **monotologist** · The same extension ID is retained.
+
+## Reuse your existing Monolex session
+
+Install/update the connector in the same Chrome profile where you use Monolex. v0.7.0 attaches to tabs already open before extension installation without a page reload. Its popup distinguishes a ready workspace, login page, loading/unavailable page and no open Monolex tab. The open button returns to the existing workspace, preferring it over a separate login tab.
+
+This observes workspace/account-control visibility, not account text or authentication secrets. It does not perform a new server-authentication check, transfer another profile's login or restore a genuinely expired Monolex session. Monolex still controls its own login.
 
 ## First use of a theme
 
-1. Install or update Theme Connector. Accept Chrome's theme-management permission request if prompted, and refresh app.monolex.ai once.
-2. Log in to Monolex normally and choose a theme.
-3. If that Chrome theme is missing, select **이 테마 처음 설치** in the site prompt or extension popup and confirm installation in its Chrome Web Store page. Only themes you actually use need installation.
-4. During installation preparation, Chrome can briefly show default colors. Closing the store tab or selecting **설치 취소 · 이전 테마로** restores the previous theme.
+1. In a focused ready app.monolex.ai workspace, choose a theme.
+2. If that Chrome theme is missing, v0.7.0 opens its official Web Store listing automatically once. Confirm **Add to Chrome** and any Chrome installation dialog. No theme search or separate file download is needed.
+3. On completion, the connector returns to the original workspace if its store tab is still active. During preparation Chrome may briefly show default colors. Closing the store tab or selecting **설치 취소 · 이전 테마로** restores the previous theme.
+4. Cancellation, page focus and worker wake do not repeatedly reopen the same theme. Use **설치 페이지 다시 열기** to retry. The no-account theme-management page also supports explicit installation.
+
+All 38 names, palettes and official theme mappings are included in the connector. Bundled color data is not a Chrome theme installation: Chrome's first-install confirmation remains required for each desired theme, in each profile. The connector cannot silently or bulk-install themes.
 
 ## After installation
 
-The connector follows the displayed preset in the focused app.monolex.ai tab, including previews, and automatically switches between installed themes. No local app, terminal program or per-change installation confirmation is required. The popup offers pause/resume and shows how many of the 38 themes are installed.
+Installed themes switch automatically with the displayed preset in the focused Monolex workspace, including previews. No local app or per-change confirmation is required. The popup offers pause/resume and installed-theme counts. Brief previews are debounced before first-install handoff. Chrome policies may block changes. Removing a theme requires installation again; after an earlier offer, use explicit retry. Native toolbar-divider hiding is unsupported.
 
-Themes and settings belong to each Chrome profile. Installing the extension in another profile does not install its themes there. If a theme is removed, the next use needs installation again. Managed Chrome policies may prevent changes. Chrome's native toolbar/content divider is not controlled.
+## Privacy and validation
 
-The update uses `management` only for theme inventory, enable/disable transitions and installation events, and `storage` only for local settings and installation recovery. The content script is restricted to `https://app.monolex.ai/*`. It reads theme markers and focus/visibility, not page text, passwords, cookies or messages. No observations or installation inventory are sent to a developer server.
+Permissions are `management`, `storage`, `scripting` and exact app host access. Account labels, passwords, cookies, tokens, page text and account storage are not read. No observations or inventory are sent to a developer server. See [the privacy policy](PRIVACY.md).
 
-## Release validation
-
-The submitted v0.6.0 package passed 50 unit/regression checks. In isolated Chrome 157 profiles, all 38 public theme IDs were exercised from official Google theme package bytes loaded as development fixtures, followed by 76 automatic forward/reverse transitions with all themes retained. First-use/cancel/install-event, pause/resume, focus boundaries and service-worker stop/wake were checked. This does not claim an observed end-to-end native Web Store installation UI or normal store-installed restart test.
-
-Submitted ZIP SHA-256: `b265243b984a8e2f573bae7b6cda926e2b0485637c54c362b526bbbedb00f252`.
+The v0.7.0 candidate passed 57 unit/regression checks, actual Chrome 157 app-open-before-install connection tests, ready/login/loading distinction, workspace reuse, one-time store handoff, cancellation recovery, worker wake and focus restrictions. All 38 public IDs passed 76 automatic transitions with all themes retained, using official Google CRX bytes loaded as development fixtures. Real user authentication was not accessed. Native Web Store install completion and normal store-installed full-browser restart retention are not claimed as observed tests.
 
 ## Earlier versions
 
-The older v0.4.1 store extension and optional ad hoc-signed Mac companion are documented in [the legacy guide](LEGACY-MAC.md). The Mac beta is no longer required by the v0.6.0 design. Its historical release files remain available for existing test users.
+v0.6.0 required a connector install click before opening each missing theme's listing. The older v0.4.1 local-companion workflow is preserved in [the legacy guide](LEGACY-MAC.md). That Mac beta is not required by current extension-only versions.
 
-[Privacy policy](PRIVACY.md) · [Support](https://github.com/robinumzikim/monolex-theme-connector-distribution/issues)
-
-Do not include passwords, cookies, browser profiles or private account data in public issues.
+[Support](https://github.com/robinumzikim/monolex-theme-connector-distribution/issues). Do not post passwords, cookies, browser profiles or private account data.
